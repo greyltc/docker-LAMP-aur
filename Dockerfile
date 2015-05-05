@@ -88,5 +88,7 @@ RUN sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 EXPOSE 80
 EXPOSE 443
 
-# start apache and mysql
-CMD cd '/usr'; sudo /usr/bin/mysqld_safe --datadir='/var/lib/mysql'& sudo apachectl -DFOREGROUND
+# start servers
+ENV START_APACHE true
+ENV START_MYSQL true
+CMD ["/root/startServers.sh"]
