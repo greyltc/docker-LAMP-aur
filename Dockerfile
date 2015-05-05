@@ -18,11 +18,9 @@ RUN sudo sed -i 's,#LoadModule socache_shmcb_module modules/mod_socache_shmcb.so
 RUN sudo sed -i 's,#Include conf/extra/httpd-ssl.conf,Include conf/extra/httpd-ssl.conf,g' /etc/httpd/conf/httpd.conf
 
 # generate a self-signed cert
-WORKDIR /etc/httpd/conf
 ENV SUBJECT /C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost
 ADD genSSLKey.sh /etc/httpd/conf/genSSLKey.sh
-RUN /etc/httpd/conf/genSSLKey.sh
-RUN mkdir /https
+RUN sudo /etc/httpd/conf/genSSLKey.sh
 RUN sudo mkdir /https
 RUN sudo ln -s /etc/httpd/conf/server.crt /https/server.crt
 RUN sudo ln -s /etc/httpd/conf/server.key /https/server.key
