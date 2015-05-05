@@ -89,6 +89,7 @@ EXPOSE 80
 EXPOSE 443
 
 # start servers
+ADD startServers.sh /root/startServers.sh
 ENV START_APACHE true
 ENV START_MYSQL true
 CMD ["/root/startServers.sh"]
