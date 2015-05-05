@@ -1,5 +1,5 @@
-# docker-LAMP
-defines a docker container running Arch Linux with the LAMP stack installed
+# docker-LAMP-aur
+A docker container running Arch Linux with the LAMP stack installed, ready for aur access
 
 ## Usage
 
