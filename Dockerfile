@@ -20,7 +20,7 @@ RUN sudo sed -i 's,#Include conf/extra/httpd-ssl.conf,Include conf/extra/httpd-s
 # generate a self-signed cert
 ENV SUBJECT /C=US/ST=CA/L=CITY/O=ORGANIZATION/OU=UNIT/CN=localhost
 ADD genSSLKey.sh /etc/httpd/conf/genSSLKey.sh
-RUN sudo /etc/httpd/conf/genSSLKey.sh
+RUN sudo -E /etc/httpd/conf/genSSLKey.sh
 RUN sudo mkdir /https
 RUN sudo ln -s /etc/httpd/conf/server.crt /https/server.crt
 RUN sudo ln -s /etc/httpd/conf/server.key /https/server.key
