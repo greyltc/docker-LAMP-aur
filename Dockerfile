@@ -96,6 +96,16 @@ RUN sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 #RUN sed -i 's,mysql.default_host =,mysql.default_host = localhost,g' /etc/php/php.ini
 #RUN sed -i 's,mysql.default_user =,mysql.default_user = root,g' /etc/php/php.ini
 
+# for dav suppport
+RUN sudo sed -i 's,#LoadModule dav_module modules/mod_dav.so,LoadModule dav_module modules/mod_dav.so,g' /etc/httpd/conf/httpd.conf
+RUN sudo sed -i 's,#LoadModule dav_fs_module modules/mod_dav_fs.so,LoadModule dav_fs_module modules/mod_dav_fs.so,g' /etc/httpd/conf/httpd.conf
+RUN sudo sed -i 's,#LoadModule dav_lock_module modules/mod_dav_lock.so,LoadModule dav_lock_module modules/mod_dav_lock.so,g' /etc/httpd/conf/httpd.conf
+RUN sudo sed -i '$a DAVLockDB /home/httpd/DAV/DAVLock' /etc/httpd/conf/httpd.conf
+RUN sudo mkdir -p /home/httpd/DAV
+RUN sudo chown -R http:http /home/httpd/DAV
+RUN sudo mkdir -p /home/httpd/html/dav
+RUN sudo chown -R nobody.nobody /home/httpd/html/dav
+
 # expose web server ports
 EXPOSE 80
 EXPOSE 443
@@ -104,6 +114,7 @@ EXPOSE 443
 ENV REGENERATE_SSL_CERT false
 ENV START_APACHE true
 ENV START_MYSQL true
+ENV ENABLE_DAV false
 
 # start servers
 ADD startServers.sh /root/startServers.sh
