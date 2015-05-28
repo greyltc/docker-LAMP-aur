@@ -104,7 +104,7 @@ RUN sudo sed -i '$a DAVLockDB /home/httpd/DAV/DAVLock' /etc/httpd/conf/httpd.con
 RUN sudo mkdir -p /home/httpd/DAV
 RUN sudo chown -R http:http /home/httpd/DAV
 RUN sudo mkdir -p /home/httpd/html/dav
-RUN sudo chown -R nobody.nobody /home/httpd/html/dav
+RUN sudo chown -R http:http /home/httpd/html/dav
 
 # expose web server ports
 EXPOSE 80
