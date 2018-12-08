@@ -3,10 +3,10 @@ This is exactly the same as https://github.com/greyltc/docker-LAMP with the foll
 
 Containers based on this one can use the following to install `PACKAGE` from the AUR:
 ```bash
-su docker -c 'yay -S --noprogressbar --noedit --noconfirm PACKAGE'
+su docker -c 'yay -S --noprogressbar --needed --noconfirm PACKAGE'
 ```
 
 So in your Dockerfile, that would look like:
 ```dockerfile
-RUN su docker -c 'yay -S --noprogressbar --noedit --noconfirm PACKAGE'
+RUN su docker -c 'yay -S --noprogressbar --needed --noconfirm PACKAGE'
 ```
